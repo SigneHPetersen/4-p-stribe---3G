@@ -14,13 +14,13 @@ function draw() {
   background(220);
 
   //dette er hele spillepladen
-  fill(100);
+  fill(0,0,250);
   rect(40, 150, 520, 420);
 
   //Dette er hver lodrette kolodne af spillepladen, 
   //Derefter tegnes gennesigtige cirkler ovenpå.
-  fill(50);
-  rect(40, 150, 520/7, 420);
+  //fill(0, 0, 250);
+  //rect(40, 150, 520/7, 420);
   fill(220);
   ellipse(520/7 + 0*(520/7), 185, 65, 65);
   ellipse(520/7 + 0*(520/7), 185 + 1*(420/6), 65, 65);

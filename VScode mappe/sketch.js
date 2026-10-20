@@ -90,8 +90,73 @@ function draw() {
   ellipse(520/7 + 6*(520/7), 185 + 5*(420/6), 65, 65);
 }
 
+//Dette skal bruges til at lave funktionen hvor hvad klikker.
 
+function mouseClicked(){
 
+  /*Dette er en nemmere måde at skrive hvilket felt musen er i på:
+  for(let j = 0; j < 3; j++){
+  for(let i = 0; i < 3; i++){
+  if(mouseX > 0 + width/3*i && mouseX < width/3 + width/3*i && mouseY > 0 + height/3*j && mouseY < height/3 + height/3*j){
+    cell = i + (3*j);
+    }
+   }
+  }
+  */
+  
+//Dette er en svære måde at skrive hvilket felt musen er i på:
+  //første række:
+  if(mouseX > 0 && mouseX < width/3 && mouseY > 0 && mouseY < height/3){
+    cell = 0
+    }
+    if(mouseX > width/3 && mouseX < width/3*2 && mouseY > 0 && mouseY < height/3){
+    cell = 1
+    }
+   if(mouseX > width/3*2 && mouseX < width/3*3 && mouseY > 0 && mouseY < height/3*3){
+    cell = 2
+    }
+  
+  //anden række:
+  if(mouseX > 0 && mouseX < width/3 && mouseY > height/3 && mouseY < height/3*2){
+    cell = 3
+    }
+  if(mouseX > width/3 && mouseX < width/3*2 && mouseY > height/3 && mouseY < height/3*2){
+    cell = 4
+    }
+   if(mouseX > width/3*2 && mouseX < width/3*3 && mouseY > height/3 && mouseY < height/3*2){
+    cell = 5
+    }
+
+  //trejde række:
+  if(mouseX > 0 && mouseX < width/3 && mouseY > height/3*2 && mouseY < height/3*3){
+    cell = 6
+    }
+  if(mouseX > width/3 && mouseX < width/3*2 && mouseY > height/3*2 && mouseY < height/3*3){
+    cell = 7
+    }
+  if(mouseX > width/3*2 && mouseX < width/3*3 && mouseY > height/3*2 && mouseY < height/3*3){
+    cell = 8
+    }
+  
+  
+  
+  /*Tegn kryds og bolle
+  circle(width/6,height/6,width/3.5);//lavet bollen øverst til venstre.
+  fill(150,140,200);
+  //line(width/3,height/3,width/20,height/20)
+  
+  //line(width/20,153.3,width/3.5,246.6);
+  //line(width/20, 246.6, width/3.5, 153.3);
+  */
+
+  console.log(cell);
+  
+  board[cell] = player;
+  player *=-1; 
+  console.log(board);
+}
+
+//Dette skal bruges til at lave brikkerne.
 class Bubbel{   
     constructor() {
        this.x = random(0, width); // <-- initialiser variablerne med en værdi 

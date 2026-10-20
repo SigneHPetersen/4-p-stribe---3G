@@ -103,7 +103,7 @@ if (mx > 40 + slice*i && mx < 40 + slice*(i+1)){
   ellipse(520/7 + i*(520/7), 185-100, 65, 65);
   console.log("kolonne " + (i+1));
 }
-
+ 
 
 }}
 

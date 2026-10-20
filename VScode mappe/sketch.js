@@ -7,11 +7,31 @@ let snefnug = [] //tomt array til at kunne lave snefnug
 
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 }
 
 function draw() {
   background(220);
+
+  //dette er hele spillepladen
+  fill(100);
+  rect(40, 150, 520, 400);
+
+  //dette er hver lodrette række af spillepladen
+  fill(50);
+  rect(40, 150, 520/7, 400);
+  fill(20);
+  rect(40 + 520/7, 150, 520/7, 400);
+  fill(220,0,30);
+  rect(40 + 2*(520/7), 150, 520/7, 400);
+  fill(0,220,0);
+  rect(40 + 3*(520/7), 150, 520/7, 400);
+  fill(0,0,220);
+  rect(40 + 4*(520/7), 150, 520/7, 400);
+  fill(220,220,0);
+  rect(40 + 5*(520/7), 150, 520/7, 400);
+  fill(20,0,50);
+  rect(40 + 6*(520/7), 150, 520/7, 400);
 }
 
 

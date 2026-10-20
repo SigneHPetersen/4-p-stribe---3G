@@ -90,8 +90,10 @@ function draw() {
   ellipse(520/7 + 6*(520/7), 185 + 5*(420/6), 65, 65);
 }
 
-//Dette skal bruges til at lave funktionen hvor hvad klikker.
 
+
+
+//Dette skal bruges til at lave funktionen hvor hvad klikker.
 function mouseClicked(){
 
   /*Dette er en nemmere måde at skrive hvilket felt musen er i på:
@@ -155,6 +157,7 @@ function mouseClicked(){
   player *=-1; 
   console.log(board);
 }
+
 
 //Dette skal bruges til at lave brikkerne.
 class Bubbel{   

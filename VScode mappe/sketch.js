@@ -14,7 +14,7 @@ function draw() {
   background(220);
 
   //dette er hele spillepladen
-  fill(0,0,250);
+  fill(0,20,200);
   rect(40, 150, 520, 420);
 
   //Dette er hver lodrette kolodne af spillepladen, 

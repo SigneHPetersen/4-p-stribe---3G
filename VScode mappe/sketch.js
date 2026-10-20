@@ -88,7 +88,25 @@ function draw() {
   ellipse(520/7 + 6*(520/7), 185 + 3*(420/6), 65, 65);
   ellipse(520/7 + 6*(520/7), 185 + 4*(420/6), 65, 65);
   ellipse(520/7 + 6*(520/7), 185 + 5*(420/6), 65, 65);
+
+
+  mouseover()
 }
+
+
+function mouseover(){
+mx= mouseX;
+slice = 520/7
+
+for(let i = 0; i < 7; i++){
+if (mx > 40 + slice*i && mx < 40 + slice*(i+1)){
+  ellipse(520/7 + i*(520/7), 185-100, 65, 65);
+  console.log("kolonne " + (i+1));
+}
+
+
+
+
 
 
 

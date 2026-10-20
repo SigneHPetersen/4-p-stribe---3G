@@ -90,7 +90,7 @@ function draw() {
   ellipse(520/7 + 6*(520/7), 185 + 5*(420/6), 65, 65);
 
 
-  mouseover()
+   mouseover()
 }
 
 
@@ -105,6 +105,7 @@ if (mx > 40 + slice*i && mx < 40 + slice*(i+1)){
 }
 
 
+}}
 
 
 

@@ -1,3 +1,11 @@
+//Variabler for snefnug.
+let cX2; // <-- Opret variabler for cirklens x og y
+let cY2;
+
+let snefnug = [] //tomt array til at kunne lave snefnug
+//
+
+
 function setup() {
   createCanvas(400, 400);
 }

@@ -7,4 +7,12 @@ function draw() {
 }
 
 
+<<<<<<< Updated upstream
 //Mathias Alfred Bjerglund
+=======
+
+
+
+
+Mathias branch
+>>>>>>> Stashed changes

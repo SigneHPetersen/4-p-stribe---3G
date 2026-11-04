@@ -1,4 +1,4 @@
-//Variabel for spiller 1
+//Variabel for spillerne
 let spiller = 1;
 //Variabel for brikkerne
 let brikker = [];
@@ -73,9 +73,9 @@ slice = 520/7;
     let kolonne = Math.floor((mx - 40) / slice);
 
     if (spiller == 1) {
-      fill(255, 0, 0);
+      fill(220, 0, 0);
     } else {
-      fill(255, 255, 0);
+      fill(220, 220, 0);
     }
 
     let x = 40 + (kolonne + 0.5) * slice;

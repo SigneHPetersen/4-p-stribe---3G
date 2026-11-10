@@ -106,10 +106,11 @@ function mousePressed() {
   let mx = mouseX;
   //Beregner bredden på hver kolonne.
   let slice = 520 / 7;
+  console.log(brikker); 
 
   //Der gennemgås alle 7 kolonner for at finde den kolonne, der bliver klikket på.
   for (let kolonne = 0; kolonne < 7; kolonne++) {
-
+   if (S1V|| S2V) {
     //Der tjekkes om muses x-koordinat er indne for den valgte kolonne.
     if (mx > 40 + slice * kolonne &&
         mx < 40 + slice * (kolonne + 1)) {
@@ -121,8 +122,10 @@ function mousePressed() {
         if (brikker[raekke][kolonne] == 0) {
           //Placerer spillerens brik i det tomme felt.
           brikker[raekke][kolonne] = spiller;
-
-          //Tjekker om spillepladen er fuld.
+        }
+        
+        }
+        //Tjekker om spillepladen er fuld.
           if (TjekOmPladenErFuld()) {
             //Skriver en besked i konsollen, hvis pladen er fuld.
             console.log("Spilleplade er fuld");
@@ -134,17 +137,22 @@ function mousePressed() {
               } else {
                 spiller = 1;
               }
-
           }
           //Stopper for-løkken, da brikken er blevet placeret.
           break;
-        }
       }
+      }
+      if(S1V){
+        
+      }
+      S1V = false;
+      S2V = false;
+      spiller = 1;
     }
+    return;
   }
-}
 
-
+    
 //Denne fukntion tjekker om spillepladen er fuld.
 function TjekOmPladenErFuld(){
   //Der gennmgås alle 6 rækker.

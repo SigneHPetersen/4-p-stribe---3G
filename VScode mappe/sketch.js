@@ -1,9 +1,8 @@
 //Variabel for spillerne
 let spiller = 1;
-//Variabel for brikkerne
+//Tomt array til brikkerne.
 let brikker = [];
-//Varibaler 
-let S1V = false;
+ let S1V = false;
 let S2V = false;
 
 function setup() {
@@ -25,56 +24,55 @@ function draw() {
   //Tegner hele den blå spilleplade
   fill(0,20,200);
   rect(40, 150, 520, 420);
- 
+
   //Der tegnes gennemsigtigte cirkler ovenpå spillepladen, ved hjælp af for-løkker.
   //Der tegnes 42 huller som alle er gennemsigtige i farven.
   fill(220);
 
-  //Her Tegner jeg brikkerne, som allerede er placerede på spillepladen.
-  //For-løkkerne gennemgår alle felterne i arrayet.
   for (let kolonne = 0; kolonne < 7; kolonne++) {
     for (let raekke = 0; raekke < 6; raekke++) {
-
-      //Beregner midten af hvert hul på spillepladen.
       let x = 40 + (kolonne + 0.5) * (520 / 7);
       let y = 150 + 35 + raekke * (420 / 6);
 
-      //Tegner hullet som en cirkel.
-      let x = 40 + (kolonne + 0.5) * (520 / 7);
-      let y = 150 + 35 + raekke * (420 / 6);
       ellipse(x, y, 65, 65);
+    }
+  }
 
-      //Hvis feltet har værdien 1, tegnes en rød brik.
-        if (brikker[raekke][kolonne] == 1) {
-          fill(230, 0, 0);
-          //Beregner brikkens placering ud fra dens række og kolonne.
-          ellipse(40 + (kolonne + 0.5) * (520 / 7),
-                185 + raekke * (420 / 6), 65, 65);
-      }
+      //Her Tegner jeg brikkerne, til når de er placerede på spillepladen.
+      for (let raekke = 0; raekke < 6; raekke++) {
+      for (let kolonne = 0; kolonne < 7; kolonne++) { 
+      
+    //Hvis feltet har værdien 1, tegnes en rød brik.
+      if (brikker[raekke][kolonne] == 1) {
+        fill(230, 0, 0);
+        //Beregner brikkens placering ud fra dens række og kolonne.
+        ellipse(40 + (kolonne + 0.5) * (520 / 7),
+              185 + raekke * (420 / 6), 65, 65);
+     }
 
-      //Hvis feltet har værdien 2, tegnes en gul brik.
+     //Hvis feltet har værdien 2, tegens en gul brik.
       if (brikker[raekke][kolonne] == 2) {
         fill(240, 240, 0);
         //Beregner brikkens placering ud fra dens række og kolonne.
         ellipse(40 + (kolonne + 0.5) * (520 / 7),
               185 + raekke * (420 / 6), 65, 65);
      }
-    }
+    } 
   }
-      
-  //Her kaldes mouseover funktionen, når den tegner brikken der følger musen.
+  
+  //Her kaldes mouseover funktionen nå den tegner brikken der følger musen.
    mouseover()
   //Her kaldes checkWinner funktionen.
    checkWinner() 
 }
+  
 
 //Her laves en funktion hvor brikken vises over spillepladen og følger musen til hvilken kolonne musen er over.
 function mouseover(){
 //Her gemmer musen x-koordinatet i variablen mx.
-let mx= mouseX;
+mx= mouseX;
 //Her beregnes bredden på hver kolonne.
-let slice = 520/7;
-
+slice = 520/7;
 
   //Tjekker om musen er inden for spillepladens bredde og højde.
   if (mx > 40 && mx < 560 && mouseY > 150 && mouseY < 570) {
@@ -82,25 +80,17 @@ let slice = 520/7;
     //Finder hvilken kolonne musen er over.
     let kolonne = Math.floor((mx - 40) / slice);
 
+    //Vægler farve efter hvilken spiller der er.
     //Vægler brikkens farve efter, hvilken spiller der har turen.
-      //Her Tegner jeg brikkerne, til når de er placerede på spillepladen.
-      for (let raekke = 0; raekke < 6; raekke++) {
-      for (let kolonne = 0; kolonne < 7; kolonne++) { 
-      
-      if (brikker[raekke][kolonne] == 1) {
-        fill(230, 0, 0);
-        ellipse(40 + (kolonne + 0.5) * (520 / 7),
-              185 + raekke * (420 / 6), 65, 65);
-     }
+    if (spiller == 1) {
+      fill(220, 0, 0);
+    } else {
+      fill(220, 220, 0);
+    }
 
-      if (brikker[raekke][kolonne] == 2) {
-        fill(240, 240, 0);
-        ellipse(40 + (kolonne + 0.5) * (520 / 7),
-              185 + raekke * (420 / 6), 65, 65);
-     }
-    } 
+    let x = 40 + (kolonne + 0.5) * slice;
+    ellipse(x, 85, 65, 65);
   }
- }
 }
 
 
@@ -111,7 +101,8 @@ function mousePressed() {
   //Beregner bredden på hver kolonne.
   let slice = 520 / 7;
   console.log(brikker); 
-  if (S1V|| S2V) {
+
+   if (S1V|| S2V) {
     if (mouseX > 250 && mouseX < 250 + 100 &&
         mouseY > 400 && mouseY < 400 + 75) {
 
@@ -120,7 +111,6 @@ function mousePressed() {
         for (let j = 0; j < 7; j++) {
           brikker[i][j] = 0;
         }
-
       }
       if(S1V){
         
@@ -134,7 +124,7 @@ function mousePressed() {
 
   //Der gennemgås alle 7 kolonner for at finde den kolonne, der bliver klikket på.
   for (let kolonne = 0; kolonne < 7; kolonne++) {
-   if (S1V|| S2V) {
+
     //Der tjekkes om muses x-koordinat er indne for den valgte kolonne.
     if (mx > 40 + slice * kolonne &&
         mx < 40 + slice * (kolonne + 1)) {
@@ -142,74 +132,50 @@ function mousePressed() {
       //Starter nederst på spillepladen og bevæger sig opad.
       for (let raekke = 5; raekke >= 0; raekke--) {
 
-        //Tjekker om det valgte felt er tomt.
+         //Tjekker om det valgte felt er tomt.
         if (brikker[raekke][kolonne] == 0) {
+
           //Placerer spillerens brik i det tomme felt.
           brikker[raekke][kolonne] = spiller;
-        }
-        
-        }
-        //Tjekker om spillepladen er fuld.
+
+          //Tjekker om spillepladen er fuld.
           if (TjekOmPladenErFuld()) {
             //Skriver en besked i konsollen, hvis pladen er fuld.
             console.log("Spilleplade er fuld");
           } else {
 
-            //Skifter spillernes tur.
-              if (spiller == 1) {
-                spiller = 2;
-              } else {
-                spiller = 1;
-              }
+          //Skifter spillernes tur.
+          if (spiller == 1) {
+            spiller = 2;
+          } else {
+            spiller = 1;
           }
+        }
           //Stopper for-løkken, da brikken er blevet placeret.
           break;
+        }
       }
     }
   }
 }
 
-    
+
 //Denne fukntion tjekker om spillepladen er fuld.
 function TjekOmPladenErFuld(){
   //Der gennmgås alle 6 rækker.
   for (let raekke = 0; raekke < 6; raekke++) {
     //Der gennemgås alle 7 kolonner.
     for (let kolonne =  0; kolonne < 7; kolonne++) {
-
-      //Undersøger om et felt stadig har værdien 0, hvis ja er feltet tomt.
+      
+        //Undersøger om et felt stadig har værdien 0, hvis ja er feltet tomt.
       if (brikker[raekke][kolonne] == 0) {
         //Returnerer false, fordi spillepladem ikke er fuld.
         return false;
       }
     }
-  }
-  
+  } 
   //Returnerer true, fordi spillepladen er fuld.
   return true;
-
-  for (let kolonne = 0; kolonne < 7; kolonne++) {
-
-    if (mx > 40 + slice * kolonne &&
-        mx < 40 + slice * (kolonne + 1)) {
-
-      for (let raekke = 5; raekke >= 0; raekke--) {
-
-        if (brikker[raekke][kolonne] == 0) {
-
-          brikker[raekke][kolonne] = spiller;
-
-          if (spiller == 1) {
-            spiller = 2;
-          } else {
-            spiller = 1;
-          }
-          
-          break;
-        }
-      }
-    }
-  }
 }
 
 

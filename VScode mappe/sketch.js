@@ -2,6 +2,8 @@
 let spiller = 1;
 //Tomt array til brikkerne.
 let brikker = [];
+let S1V = false;
+let S2V = false;
 
 function setup() {
   createCanvas(600, 600);

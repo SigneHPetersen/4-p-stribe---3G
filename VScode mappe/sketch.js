@@ -1,7 +1,8 @@
-//Variabel for spillerne.
+//Variabel for spillerne
 let spiller = 1;
-//Tomt array til brikkerne.
+//Variabel for brikkerne
 let brikker = [];
+//Varibaler 
 let S1V = false;
 let S2V = false;
 
@@ -21,32 +22,29 @@ function setup() {
 function draw() {
   background(220);
 
-  //Tegner hele den blå spilleplade.
+  //Tegner hele den blå spilleplade
   fill(0,20,200);
   rect(40, 150, 520, 420);
-
-  //Der tegnes 42 huller som alle er gennemsigtige.
-  //Der bruges for-løkker, så alle 6 rækker og 7 kolonner gennemgås.
+ 
+  //Der tegnes gennemsigtigte cirkler ovenpå spillepladen, ved hjælp af for-løkker.
+  //Der tegnes 42 huller som alle er gennemsigtige i farven.
   fill(220);
 
+  //Her Tegner jeg brikkerne, som allerede er placerede på spillepladen.
+  //For-løkkerne gennemgår alle felterne i arrayet.
   for (let kolonne = 0; kolonne < 7; kolonne++) {
     for (let raekke = 0; raekke < 6; raekke++) {
-      
+
       //Beregner midten af hvert hul på spillepladen.
       let x = 40 + (kolonne + 0.5) * (520 / 7);
       let y = 150 + 35 + raekke * (420 / 6);
 
       //Tegner hullet som en cirkel.
+      let x = 40 + (kolonne + 0.5) * (520 / 7);
+      let y = 150 + 35 + raekke * (420 / 6);
       ellipse(x, y, 65, 65);
-    }
-  }
 
-      //Her Tegner jeg brikkerne, som allerede er placerede på spillepladen.
-      //For-løkkerne gennemgår alle felterne i arrayet.
-      for (let raekke = 0; raekke < 6; raekke++) {
-        for (let kolonne = 0; kolonne < 7; kolonne++) { 
-      
-        //Hvis feltet har værdien 1, tegnes en rød brik.
+      //Hvis feltet har værdien 1, tegnes en rød brik.
         if (brikker[raekke][kolonne] == 1) {
           fill(230, 0, 0);
           //Beregner brikkens placering ud fra dens række og kolonne.
@@ -61,9 +59,9 @@ function draw() {
         ellipse(40 + (kolonne + 0.5) * (520 / 7),
               185 + raekke * (420 / 6), 65, 65);
      }
-    }  
+    }
   }
-  
+      
   //Her kaldes mouseover funktionen, når den tegner brikken der følger musen.
    mouseover()
   //Her kaldes checkWinner funktionen.
@@ -85,18 +83,24 @@ let slice = 520/7;
     let kolonne = Math.floor((mx - 40) / slice);
 
     //Vægler brikkens farve efter, hvilken spiller der har turen.
-    if (spiller == 1) {
-      fill(220, 0, 0);
-    } else {
-      fill(220, 220, 0);
-    }
+      //Her Tegner jeg brikkerne, til når de er placerede på spillepladen.
+      for (let raekke = 0; raekke < 6; raekke++) {
+      for (let kolonne = 0; kolonne < 7; kolonne++) { 
+      
+      if (brikker[raekke][kolonne] == 1) {
+        fill(230, 0, 0);
+        ellipse(40 + (kolonne + 0.5) * (520 / 7),
+              185 + raekke * (420 / 6), 65, 65);
+     }
 
-    //Finder midten af den kolonne, musen er over.
-    let x = 40 + (kolonne + 0.5) * slice;
-
-    //Tegner brikken over spillepladen.
-    ellipse(x, 85, 65, 65);
+      if (brikker[raekke][kolonne] == 2) {
+        fill(240, 240, 0);
+        ellipse(40 + (kolonne + 0.5) * (520 / 7),
+              185 + raekke * (420 / 6), 65, 65);
+     }
+    } 
   }
+ }
 }
 
 
@@ -107,6 +111,26 @@ function mousePressed() {
   //Beregner bredden på hver kolonne.
   let slice = 520 / 7;
   console.log(brikker); 
+  if (S1V|| S2V) {
+    if (mouseX > 250 && mouseX < 250 + 100 &&
+        mouseY > 400 && mouseY < 400 + 75) {
+
+      for (let i = 0; i < 6; i++) {
+        brikker[i] = [];
+        for (let j = 0; j < 7; j++) {
+          brikker[i][j] = 0;
+        }
+
+      }
+      if(S1V){
+        
+      }
+      S1V = false;
+      S2V = false;
+      spiller = 1;
+    }
+    return;
+  }
 
   //Der gennemgås alle 7 kolonner for at finde den kolonne, der bliver klikket på.
   for (let kolonne = 0; kolonne < 7; kolonne++) {
@@ -141,16 +165,9 @@ function mousePressed() {
           //Stopper for-løkken, da brikken er blevet placeret.
           break;
       }
-      }
-      if(S1V){
-        
-      }
-      S1V = false;
-      S2V = false;
-      spiller = 1;
     }
-    return;
   }
+}
 
     
 //Denne fukntion tjekker om spillepladen er fuld.
@@ -167,8 +184,32 @@ function TjekOmPladenErFuld(){
       }
     }
   }
+  
   //Returnerer true, fordi spillepladen er fuld.
   return true;
+
+  for (let kolonne = 0; kolonne < 7; kolonne++) {
+
+    if (mx > 40 + slice * kolonne &&
+        mx < 40 + slice * (kolonne + 1)) {
+
+      for (let raekke = 5; raekke >= 0; raekke--) {
+
+        if (brikker[raekke][kolonne] == 0) {
+
+          brikker[raekke][kolonne] = spiller;
+
+          if (spiller == 1) {
+            spiller = 2;
+          } else {
+            spiller = 1;
+          }
+          
+          break;
+        }
+      }
+    }
+  }
 }
 
 
@@ -254,4 +295,3 @@ for (let l = 3; l <= 6; l++) {
         text('Nyt spil?', 250 + 100/2, 400 + 75/2);   
         textAlign(CENTER, CENTER);}
         }
-

@@ -66,6 +66,8 @@ function draw() {
   
   //Her kaldes mouseover funktionen, når den tegner brikken der følger musen.
    mouseover()
+  //Her kaldes checkWinner funktionen.
+   checkWinner() 
 }
 
 //Her laves en funktion hvor brikken vises over spillepladen og følger musen til hvilken kolonne musen er over.

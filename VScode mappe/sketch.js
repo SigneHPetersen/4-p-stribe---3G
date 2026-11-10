@@ -140,6 +140,7 @@ function mousePressed() {
   }
 }
 
+
 //Denne fukntion tjekker om spillepladen er fuld.
 function TjekOmPladenErFuld(){
   //Der gennmgås alle 6 rækker.
@@ -158,4 +159,87 @@ function TjekOmPladenErFuld(){
   return true;
 }
 
+
+function checkWinner() {
+  //Her skal der laves en funktion der tjekker om der er en vinder.
+  //Der skal tjekkes for vandret, lodret og diagonalt.
+
+  //vandret
+  for (let v = 0; v < 6; v++) {
+    for (let l = 0; l <= 3; l++) {
+       let s = brikker[v][l];
+      if (s !== 0 && s === brikker[v][l+1] && s === brikker[v][l+2] && s === brikker[v][l+3]) {
+        if (s === 1) {
+          S1V = true;
+        } else {
+          S2V = true;
+    }}}
+  }
+    
+//lodret
+
+  for (let v = 0; v <=2; v++) {
+    for (let l = 0; l < 7; l++) {
+       let s = brikker[v][l];
+      if (s !== 0 && s === brikker[v+1][l] && s === brikker[v+2][l] && s === brikker[v+3][l]) {
+         if (s === 1) {
+          S1V = true;
+        } 
+        if(s=== 2) {
+          S2V = true;
+    }
+      }
+    }}
+
+//dirgonal ned mod højre
+for (let v = 0; v <=2; v++) {
+for (let l = 0; l <= 3; l++) {
+    let s = brikker[v][l];
+     if (s !== 0 && s === brikker[v+1][l+1] && s === brikker[v+2][l+2] && s === brikker[v+3][l+3]) {
+       if (s === 1) {
+          S1V = true;
+        } 
+        if(s=== 2) {
+          S2V = true;
+        }
+      }
+    }}
+
+//dirgonal ned mod venstre
+for (let v = 0; v <=2; v++) {
+for (let l = 3; l <= 6; l++) {
+    let s = brikker[v][l];
+     if (s !== 0 && s === brikker[v+1][l-1] && s === brikker[v+2][l-2] && s === brikker[v+3][l-3]) {
+        if (s === 1) { S1V = true; }
+        if (s === 2) { S2V = true; }
+      }
+    }}
+
+    
+ if (S1V == true){
+        fill(0,20,200);
+        rect(40, 150, 520, 420);
+        fill(255,0,0);
+        textSize(30);
+        text('Rød har vundet', 300, 350);
+        fill(255);
+        rect(250, 400, 100, 75);
+        fill(0);
+        textSize(20);
+        text('Nyt spil?', 250 + 100/2, 400 + 75/2);   
+        textAlign(CENTER, CENTER);}
+    
+    if(S2V == true) {
+      fill(0,20,200);
+        rect(40, 150, 520, 420);
+        fill(220,220,0);
+        textSize(30);
+        text('Gul har vundet!', 300, 350);
+        fill(255);
+        rect(250, 400, 100, 75);
+        fill(0);
+        textSize(20);
+        text('Nyt spil?', 250 + 100/2, 400 + 75/2);   
+        textAlign(CENTER, CENTER);}
+        }
 
